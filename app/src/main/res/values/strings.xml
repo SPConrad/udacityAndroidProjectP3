@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">UdacityP3ProjectQuizzerApp</string>
+
+    <string name="q1">What is the air speed velocity of an unladen swallow?</string>
+    <string name="q1_wa_1">1m/s</string>
+    <string name="q1_wa_2">2m/s</string>
+    <string name="q1_wa_3">10m/s</string>
+    <string name="q1_ra">African or European?</string>
+    <string name="question2">What else floats on water?</string>
+    <string name="q2_wa_1">Churches</string>
+    <string name="q2_wa_2">Very small rocks</string>
+    <string name="q2_wa_3">Apples</string>
+    <string name="q2_ra">African or European?</string>
+
+</resources>
