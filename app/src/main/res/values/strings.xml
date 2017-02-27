@@ -2,14 +2,47 @@
     <string name="app_name">UdacityP3ProjectQuizzerApp</string>
 
     <string name="q1">What is the air speed velocity of an unladen swallow?</string>
-    <string name="q1_wa_1">1m/s</string>
-    <string name="q1_wa_2">2m/s</string>
-    <string name="q1_wa_3">10m/s</string>
-    <string name="q1_ra">African or European?</string>
-    <string name="question2">What else floats on water?</string>
-    <string name="q2_wa_1">Churches</string>
-    <string name="q2_wa_2">Very small rocks</string>
-    <string name="q2_wa_3">Apples</string>
-    <string name="q2_ra">African or European?</string>
+    <string name="q1_ra">4</string>
+    <string name="q1_a_1">1m/s</string>
+    <string name="q1_a_2">2m/s</string>
+    <string name="q1_a_3">10m/s</string>
+    <string name="q1_a_4">African or European?</string>
+    <string name="q2">What else floats on water?</string>
+    <string name="q2_ra">4</string>
+    <string name="q2_a_1">Churches</string>
+    <string name="q2_a_2">Very small rocks</string>
+    <string name="q2_a_3">Apples</string>
+    <string name="q2_a_4">A duck</string>
+    <string name="q3">In how many parsecs did Han Solo complete the Kessel Run?</string>
+    <string name="q3_ra">4</string>
+    <string name="q3_a_1">5</string>
+    <string name="q3_a_2">21</string>
+    <string name="q3_a_3">14</string>
+    <string name="q3_a_4">12</string>
+    <string name="q4">What is Giant Bomb\'s former parent company name?</string>
+    <string name="q4_ra">4</string>
+    <string name="q4_a_1">Gianter Bomb</string>
+    <string name="q4_a_2">Vinny\'s Magnetic Emporium</string>
+    <string name="q4_a_3">Batman Batman Batman</string>
+    <string name="q4_a_4">Whiskey Media</string>
+    <string name="q5">Whom of the following once lead SG-1?</string>
+    <string name="q5_ra">13</string>
+    <string name="q5_a_1">Lieutenant Colonel Samantha Carter</string>
+    <string name="q5_a_2">Major Lorne</string>
+    <string name="q5_a_3">Colonel Jack O\'Neill</string>
+    <string name="q5_a_4">Doctor Daniel Jackson</string>
+    <string name="q6">Which of the following were USAF vessels under the command of the SGC?</string>
+    <string name="q6_ra">13</string>
+    <string name="q6_a_1">Daedelus</string>
+    <string name="q6_a_2">Enterprise</string>
+    <string name="q6_a_3">Prometheus</string>
+    <string name="q6_a_4">Sun Tzu</string>
+
+    <string name="q7">What is 5 times 2?</string>
+    <string name="q7_ra">10,ten</string>
+
+
+
+    <string name="enter_your_answer_here">Enter your answer here</string>
 
 </resources>

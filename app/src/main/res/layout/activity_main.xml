@@ -13,32 +13,102 @@
 
     <TextView
         style="@style/question_text_style"
+        android:minHeight="100dp"
         android:id="@+id/question_textView"
-        android:text="Hello World!" />
+        android:text="Welcome to to the Quiz!!" />
 
-    <RadioButton
-        style="@style/answer_text_style"
-        android:id="@+id/answer_1_textView"
-        android:text="Answer 1" />
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/checkbox_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <CheckBox
+            android:id="@+id/checkbox_answer_1_textView"
+            android:tag="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkbox 1"/>
 
-    <RadioButton
-        style="@style/answer_text_style"
-        android:id="@+id/answer_2_textView"
-        android:text="Answer 2" />
+        <CheckBox
+            android:id="@+id/checkbox_answer_2_textView"
+            android:tag="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkbox 2" />
 
-    <RadioButton
-        style="@style/answer_text_style"
-        android:id="@+id/answer_3_textView"
-        android:text="Answer 3" />
+        <CheckBox
+            android:id="@+id/checkbox_answer_3_textView"
+            android:tag="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkbox 3" />
 
-    <RadioButton
-        style="@style/answer_text_style"
-        android:id="@+id/answer_4_textView"
-        android:text="Answer 4" />
+        <CheckBox
+            android:id="@+id/checkbox_answer_4_textView"
+            android:tag="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkbox 4"/>
+
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/radio_layout"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            style="@style/answer_text_style"
+            android:id="@+id/radio_answer_1_textView"
+            android:text="Answer 1"
+            android:tag="1"
+            android:onClick="setAnswer"/>
+
+        <RadioButton
+            style="@style/answer_text_style"
+            android:id="@+id/radio_answer_2_textView"
+            android:text="Answer 2"
+            android:tag="2"
+            android:onClick="setAnswer" />
+
+        <RadioButton
+            style="@style/answer_text_style"
+            android:id="@+id/radio_answer_3_textView"
+            android:text="Answer 3"
+            android:tag="3"
+            android:onClick="setAnswer" />
+
+        <RadioButton
+            style="@style/answer_text_style"
+            android:id="@+id/radio_answer_4_textView"
+            android:text="Answer 4"
+            android:tag="4"
+            android:onClick="setAnswer" />
+    </RadioGroup>
+
+    <EditText
+        android:visibility="gone"
+        android:id="@+id/enter_text_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/enter_your_answer_here"/>
+
 
     <Button
+        android:id="@+id/submit_button"
         style="@style/button_style"
-        android:text="Submit Answer" />
+        android:text="Submit Answer"
+        android:onClick="submitAnswer"/>
 
+    <TextView
+        android:id="@+id/score_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 Points"/>
 
 </LinearLayout>
