@@ -16,7 +16,7 @@
         <item name="android:layout_margin">16dp</item>
     </style>
 
-    <style name="answer_text_style">
+    <style name="radio_style">
         <item name="android:textSize">14sp</item>
         <item name="android:paddingLeft">12dp</item>
         <item name="android:layout_width">wrap_content</item>
@@ -24,6 +24,13 @@
         <item name="android:layout_margin">4dp</item>
     </style>
 
+    <style name="checkbox_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">4dp</item>
+    </style>
 
     <style name="button_style">
         <item name="android:textSize">14sp</item>
@@ -33,6 +40,11 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="points_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 
 
 </resources>

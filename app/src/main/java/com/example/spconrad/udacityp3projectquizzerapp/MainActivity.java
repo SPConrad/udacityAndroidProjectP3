@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private enum QuestionType {
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private QuestionType questionType = QuestionType.radio;
 
     private int score = 0;
+
+    int correct = 0;
 
     private int numberOfRadioQuestions = 4;
     private int numberOfCheckboxQuestions = 2;
@@ -33,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView questionTextView;
 
-    private TextView[] radioAnswerTextViews = new TextView[4];
+    private RadioButton[] radioAnswerTextViews = new RadioButton[4];
 
     private CheckBox[] checkboxAnswerTextViews = new CheckBox[4];
 
@@ -41,16 +45,18 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView scoreTextView;
 
-    private RadioGroup radioGroup;
-
     private int currentQuestion = 0;
 
     private Button submitButton;
+
+    private RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        radioGroup = (RadioGroup) findViewById(R.id.radio_layout);
 
         numberOfQuestions = numberOfRadioQuestions + numberOfCheckboxQuestions + numberOfTextQuestions;
 
@@ -63,17 +69,17 @@ public class MainActivity extends AppCompatActivity {
 
         enterTextTextView = (TextView) findViewById(R.id.enter_text_textView);
 
-        radioAnswerTextViews[0] = (TextView) findViewById(R.id.radio_answer_1_textView);
-        radioAnswerTextViews[1] = (TextView) findViewById(R.id.radio_answer_2_textView);
-        radioAnswerTextViews[2] = (TextView) findViewById(R.id.radio_answer_3_textView);
-        radioAnswerTextViews[3] = (TextView) findViewById(R.id.radio_answer_4_textView);
+        radioAnswerTextViews[0] = (RadioButton) findViewById(R.id.radio_answer_1_textView);
+        radioAnswerTextViews[1] = (RadioButton) findViewById(R.id.radio_answer_2_textView);
+        radioAnswerTextViews[2] = (RadioButton) findViewById(R.id.radio_answer_3_textView);
+        radioAnswerTextViews[3] = (RadioButton) findViewById(R.id.radio_answer_4_textView);
 
         checkboxAnswerTextViews[0] = (CheckBox) findViewById(R.id.checkbox_answer_1_textView);
         checkboxAnswerTextViews[1] = (CheckBox) findViewById(R.id.checkbox_answer_2_textView);
         checkboxAnswerTextViews[2] = (CheckBox) findViewById(R.id.checkbox_answer_3_textView);
         checkboxAnswerTextViews[3] = (CheckBox) findViewById(R.id.checkbox_answer_4_textView);
 
-        for (int i = 0; i < numberOfQuestions - numberOfTextQuestions; i++){
+        for (int i = 0; i < numberOfQuestions - numberOfTextQuestions; i++) {
             String identifier = getPackageName() + ":string/q" + (i + 1);
             int id = getResources().getIdentifier(identifier, null, null);
 
@@ -86,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
             String[] tempAnswers = new String[4];
 
-            for (int x = 0; x < 4; x++){
+            for (int x = 0; x < 4; x++) {
                 identifier = getPackageName() + ":string/q" + (i + 1) + "_a_" + (x + 1);
 
                 id = getResources().getIdentifier(identifier, null, null);
@@ -106,57 +112,68 @@ public class MainActivity extends AppCompatActivity {
 
         setUpNextQuestion();
     }
-    private void increaseScore(){
-        score += 100;
-    }
 
-    public void setAnswer(View view){
+    /*private void increaseScore() {
+       score += 100;
+    }*/
+
+    public void setAnswer(View view) {
         selectedAnswer = (String) (view).getTag();
-        //selectedAnswer = Integer.parseInt(answerTag);
     }
 
-    public void submitAnswer(View view){
+    public void submitAnswer(View view) {
         Boolean answeredCorrectly = false;
         if (questionType == QuestionType.radio) {
             if (selectedAnswer.equals(s_correctAnswer)) {
                 answeredCorrectly = true;
+                radioGroup.clearCheck();
+                //radioAnswerTextViews[(Integer.parseInt(selectedAnswer)) - 1].setChecked(false);
+                selectedAnswer = "";
             }
-        } else if (questionType == QuestionType.checkbox){
+        } else if (questionType == QuestionType.checkbox) {
             String answer = "";
-            for (int i = 0; i < 4; i++){
-                if (checkboxAnswerTextViews[i].isChecked()){
+            for (int i = 0; i < 4; i++) {
+                if (checkboxAnswerTextViews[i].isChecked()) {
                     answer = answer + "" + (i + 1);
                 }
             }
             String validAnswer = questions[currentQuestion].getCorrectAnswer();
-            if (answer.equals(validAnswer)){
+            if (answer.equals(validAnswer)) {
                 answeredCorrectly = true;
+                for (int i = 0; i < 4; i++) {
+                    if (checkboxAnswerTextViews[i].isChecked()) {
+                        checkboxAnswerTextViews[i].setChecked(false);
+                    }
+                }
             }
-        } else if (questionType == QuestionType.text){
+        } else if (questionType == QuestionType.text) {
             String enteredAnswer = enterTextTextView.getText().toString();
             String[] validAnswers = questions[currentQuestion].getAnswers();
             enteredAnswer = enteredAnswer.toLowerCase();
-            for (int i = 0; i < validAnswers.length; i++){
-                if (enteredAnswer.equals(validAnswers[i])){
+            for (int i = 0; i < validAnswers.length; i++) {
+                if (enteredAnswer.equals(validAnswers[i])) {
                     answeredCorrectly = true;
                     break;
                 }
             }
         }
 
-        if (answeredCorrectly == true){
-            increaseScore();
-            if (currentQuestion < (numberOfQuestions - 1)) {
-                currentQuestion += 1;
-                setUpNextQuestion();
-            } else {
-                scoreTextView.setText("Congratulations! Final score: " + score);
-                submitButton.setEnabled(false);
-            }
+        if (answeredCorrectly == true) {
+            correct += 1;
+            //increaseScore();
+        }
+        currentQuestion += 1;
+        if (currentQuestion < (numberOfQuestions)) {
+            setUpNextQuestion();
             display();
         } else {
-            ///wrong answer
+            completedQuiz();
         }
+    }
+    
+    private void completedQuiz(){
+        Toast.makeText(this, "Congratulations! You answered " + correct + " out of " + numberOfQuestions, Toast.LENGTH_LONG).show();
+        submitButton.setEnabled(false);
     }
 
     private void setUpNextQuestion() {
@@ -184,18 +201,18 @@ public class MainActivity extends AppCompatActivity {
         s_correctAnswer = questions[currentQuestion].getCorrectAnswer();
 
     }
-    private void assignQuestionBox(){
+
+    private void assignQuestionBox() {
         questionTextView.setText(questions[currentQuestion].getQuestion());
     }
 
-    private void assignTextboxes(TextView[] textViews)
-    {
-        for (int i = 0; i < 4; i++){
+    private void assignTextboxes(TextView[] textViews) {
+        for (int i = 0; i < 4; i++) {
             textViews[i].setText(questions[currentQuestion].getAnswer(i));
         }
     }
 
-    private void changeVisibility(int id, boolean visible){
+    private void changeVisibility(int id, boolean visible) {
         View _layout = (View) findViewById(id);
         if (visible == true) {
             _layout.setVisibility(View.VISIBLE);
@@ -205,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void display(){
+    private void display() {
         scoreTextView.setText(score + " Points");
     }
 }
