@@ -137,10 +137,11 @@ public class MainActivity extends AppCompatActivity {
             String validAnswer = questions[currentQuestion].getCorrectAnswer();
             if (answer.equals(validAnswer)) {
                 answeredCorrectly = true;
-                for (int i = 0; i < 4; i++) {
-                    if (checkboxAnswerTextViews[i].isChecked()) {
-                        checkboxAnswerTextViews[i].setChecked(false);
-                    }
+            }
+
+            for (int i = 0; i < 4; i++) {
+                if (checkboxAnswerTextViews[i].isChecked()) {
+                    checkboxAnswerTextViews[i].setChecked(false);
                 }
             }
         } else if (questionType == QuestionType.text) {
