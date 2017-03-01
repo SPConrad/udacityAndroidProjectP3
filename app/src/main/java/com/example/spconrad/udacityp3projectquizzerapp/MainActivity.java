@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView enterTextTextView;
 
-    private TextView scoreTextView;
 
     private int currentQuestion = 0;
 
@@ -64,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
         submitButton = (Button) findViewById(R.id.submit_button);
 
-        scoreTextView = (TextView) findViewById(R.id.score_textView);
         questionTextView = (TextView) findViewById(R.id.question_textView);
 
         enterTextTextView = (TextView) findViewById(R.id.enter_text_textView);
@@ -126,10 +124,9 @@ public class MainActivity extends AppCompatActivity {
         if (questionType == QuestionType.radio) {
             if (selectedAnswer.equals(s_correctAnswer)) {
                 answeredCorrectly = true;
-                radioGroup.clearCheck();
-                //radioAnswerTextViews[(Integer.parseInt(selectedAnswer)) - 1].setChecked(false);
-                selectedAnswer = "";
             }
+            radioGroup.clearCheck();
+            selectedAnswer = "";
         } else if (questionType == QuestionType.checkbox) {
             String answer = "";
             for (int i = 0; i < 4; i++) {
@@ -165,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
         currentQuestion += 1;
         if (currentQuestion < (numberOfQuestions)) {
             setUpNextQuestion();
-            display();
         } else {
             completedQuiz();
         }
@@ -219,10 +215,5 @@ public class MainActivity extends AppCompatActivity {
         } else if (visible == false) {
             _layout.setVisibility(View.GONE);
         }
-    }
-
-
-    private void display() {
-        scoreTextView.setText(score + " Points");
     }
 }
